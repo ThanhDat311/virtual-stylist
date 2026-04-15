@@ -1,0 +1,13 @@
+torch
+transformers
+faiss-cpu
+gradio
+pandas
+Pillow
+rembg
+kagglehub[pandas-datasets]
+scikit-learn
+matplotlib
+seaborn
+tqdm
+numpy
