@@ -21,6 +21,7 @@ import sys
 import traceback
 
 import numpy as np
+import torch
 from PIL import Image, UnidentifiedImageError
 from tqdm import tqdm
 

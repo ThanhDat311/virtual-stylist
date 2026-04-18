@@ -1,5 +1,47 @@
-.venv
-outputs/
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+.Python
+
+# ── Virtual Environment ───────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── Dữ liệu thô (quá lớn, tải từ Kaggle) ────────────────────────────────────
 data/
-__pycache__
-*.pyc
+outputs/
+
+# ── Dữ liệu người dùng (private) ─────────────────────────────────────────────
+user_closet/
+user_closet_data.csv
+
+# ── Model weights (dùng Model Manager để update riêng) ───────────────────────
+# models/*.pt          ← BỎ comment dòng này nếu KHÔNG muốn push model lên git
+# Hiện tại: GIỮ siamese_best.pt để người clone có thể chạy ngay
+models/backups/
+
+# ── Notebooks (tùy chọn - bỏ comment nếu không muốn push) ───────────────────
+# *.ipynb
+
+# ── IDE / Editor ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Logs & Temp ───────────────────────────────────────────────────────────────
+*.log
+tmp/
+temp/
+.tmp/
+
+# ── Debug / scratch files ─────────────────────────────────────────────────────
+debug_fix.py
+fix_step3.py
+Untitled0.ipynb
