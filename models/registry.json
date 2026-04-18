@@ -1,5 +1,5 @@
 {
-  "active_version": "v1.0.0",
+  "active_version": "v2.0.0",
   "versions": [
     {
       "version": "v1.0.0",
@@ -8,7 +8,20 @@
       "file_size_mb": 1.63,
       "md5": "eb6be6679cf47867f4daf086b788fb64",
       "description": "Model gốc (bootstrap từ file hiện có)",
-      "training_info": {}
+      "training_info": {},
+      "status": "active"
+    },
+    {
+      "version": "v2.0.0",
+      "filename": "siamese_best.pt",
+      "created_at": "2026-04-18T15:41:25.227591",
+      "file_size_mb": 1.63,
+      "md5": "f02b51037f9ef2e344328c17f00fbe0b",
+      "description": "Model train từ Colab",
+      "training_info": {
+        "epoch": "20",
+        "accuracy": "0.9752"
+      }
     }
   ]
 }

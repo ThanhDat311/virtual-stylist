@@ -8,6 +8,8 @@ from transformers import CLIPProcessor, CLIPModel
 
 # Configuration
 CLOSET_DIR = "user_closet"
+CLOSET_IMG_DIR = os.path.join(CLOSET_DIR, "images")
+CLOSET_EMB_DIR = os.path.join(CLOSET_DIR, "embeddings")
 CSV_PATH = "user_closet_data.csv"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -33,7 +35,8 @@ class ClosetManager:
             df = pd.DataFrame(columns=["id", "filename", "role", "color", "material", "embedding_path"])
             df.to_csv(CSV_PATH, index=False)
             
-        os.makedirs(CLOSET_DIR, exist_ok=True)
+        os.makedirs(CLOSET_IMG_DIR, exist_ok=True)
+        os.makedirs(CLOSET_EMB_DIR, exist_ok=True)
 
     def process_new_item(self, image_input):
         """
@@ -56,7 +59,7 @@ class ClosetManager:
         print("Auto-tagging with CLIP...")
         item_id = str(int(pd.Timestamp.now().timestamp() * 1000))
         filename = f"{item_id}.png"
-        save_path = os.path.join(CLOSET_DIR, filename)
+        save_path = os.path.join(CLOSET_IMG_DIR, filename)
         img_no_bg.save(save_path) # Save original transparent one for UI
 
         # Tagging Layer 1: Role
@@ -69,7 +72,7 @@ class ClosetManager:
         
         # 3. Save Embedding
         emb_filename = f"{item_id}.npy"
-        emb_path = os.path.join(CLOSET_DIR, emb_filename)
+        emb_path = os.path.join(CLOSET_EMB_DIR, emb_filename)
         embedding = self._get_embedding(background)
         np.save(emb_path, embedding)
 
@@ -120,7 +123,8 @@ class ClosetManager:
             except Exception as e:
                 print(f"Error deleting directory: {e}")
                 
-        os.makedirs(CLOSET_DIR, exist_ok=True)
+        os.makedirs(CLOSET_IMG_DIR, exist_ok=True)
+        os.makedirs(CLOSET_EMB_DIR, exist_ok=True)
         
         df = pd.DataFrame(columns=["id", "filename", "role", "color", "material", "embedding_path"])
         df.to_csv(CSV_PATH, index=False)

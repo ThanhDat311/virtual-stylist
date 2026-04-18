@@ -1,8 +1,8 @@
-﻿import os
+import os
 import gradio as gr
 import pandas as pd
 import numpy as np
-from src.closet_manager import ClosetManager, CLOSET_DIR, CSV_PATH
+from src.closet_manager import ClosetManager, CLOSET_IMG_DIR, CSV_PATH
 from src.prompt_processor import process_prompt
 from src.siamese_engine import SiameseEngine
 from src.model_manager import ModelManager
@@ -19,7 +19,7 @@ def _format_image_src(path: str) -> str:
     if not path:
         return ''
     abs_path = os.path.abspath(path)
-    return f'file:///{abs_path.replace(os.sep, '/')}'
+    return f"file:///{abs_path.replace(os.sep, '/')}"
 
 
 def load_closet():
@@ -29,7 +29,7 @@ def load_closet():
         df = pd.read_csv(CSV_PATH)
         return [
             (
-                os.path.join(CLOSET_DIR, row.filename),
+                os.path.join(CLOSET_IMG_DIR, row.filename),
                 f'{row.role} | {row.color} | {row.material}',
             )
             for _, row in df.iterrows()
@@ -208,7 +208,7 @@ def create_outfit_collections(prompt_text: str):
         starter_emb = np.load(starter_item.embedding_path)
         outfit_items = [
             {
-                'path': os.path.join(CLOSET_DIR, starter_item.filename),
+                'path': os.path.join(CLOSET_IMG_DIR, starter_item.filename),
                 'role': starter_item.role,
                 'color': starter_item.color,
                 'material': starter_item.material,
@@ -242,7 +242,7 @@ def create_outfit_collections(prompt_text: str):
                 unique_colors.add(best_item.color.lower())
             outfit_items.append(
                 {
-                    'path': os.path.join(CLOSET_DIR, best_item.filename),
+                    'path': os.path.join(CLOSET_IMG_DIR, best_item.filename),
                     'role': best_item.role,
                     'color': best_item.color,
                     'material': best_item.material,
